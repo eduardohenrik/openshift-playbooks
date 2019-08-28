@@ -7,7 +7,7 @@
     docker_version: "docker"
     stor_drv: "overlay2"
     devs: "/dev/sdc"
-    docker_cidr: "192.168.108.1/24"
+    docker_cidr: "10.252.0.1/24"
 
   tasks:
     - name: Disable all Repositories
@@ -46,7 +46,6 @@
         - iptables-services
         - bridge-utils
         - bash-completion
-        - chrony
         - kexec-tools
         - sos
         - psacct
@@ -89,14 +88,13 @@
       command: docker-storage-setup
 
     - name: Create file daemon.json to change docker0 interface IP
-      become: true
-      shell: |
-        cat <<EOF > /etc/docker/daemon.json {
-        "bip": {{ docker_cidr }} }
+      become: true  
+      copy:
+        content: '{ "bip": "{{ docker_cidr }}" }'
+        dest: "/etc/docker/daemon.json"
 
     - name: Enable and Start Docker Service
       service:
         name: docker
         state: started
         enabled: yes
-
