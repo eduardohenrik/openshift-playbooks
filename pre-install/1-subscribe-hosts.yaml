@@ -1,5 +1,11 @@
 ---
 - hosts: all
+  vars_prompt:
+
+    - name: rh_password
+      prompt: "Digite sua senha:"
+      private: yes
+      
   tasks:
     - name: Register Nodes
       shell: 'subscription-manager register --username={{rh_user}} --password={{rh_password}} --force'
