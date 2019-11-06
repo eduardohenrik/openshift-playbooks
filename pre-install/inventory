@@ -1,6 +1,5 @@
 [all:vars]
 ansible_become=yes
-rh_user=username
 rh_password=secret
 master_pool=aaaaaaa
 infra_pool=aaaaaaa
@@ -13,4 +12,6 @@ app_pool=bbbbbbb
 #host05.mydomain.com
 [appnodes]
 #host05.mydomain.com
+[gluster]
+#ocs1.mydomain.com
 
