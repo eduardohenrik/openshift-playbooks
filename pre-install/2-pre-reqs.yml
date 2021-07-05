@@ -7,7 +7,7 @@
     docker_version: "docker"
     stor_drv: "overlay2"
     devs: "/dev/sdc"
-    docker_cidr: "10.252.0.1/24"
+    docker_cidr: "172.16.0.1/24"
 
   tasks:
     - name: Disable all Repositories
@@ -23,7 +23,7 @@
         - rhel-7-server-extras-rpms
         - rhel-7-server-ose-3.11-rpms
         - rhel-7-server-rh-common-rpms
-        - rhel-7-server-ansible-2.6-rpms
+        - rhel-7-server-ansible-2.9-rpms
 
     - name: Clean all Repositories and make repolist
       shell: yum clean all && yum repolist
